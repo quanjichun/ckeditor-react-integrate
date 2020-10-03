@@ -18,6 +18,7 @@ const EditorTest = () => {
       <Editor
         data={content}
         uploadFolder="Test"
+        uploader="bloodseeker"
         onChange={(event, editor) => {
           const data = editor.getData();
           setContent(data);

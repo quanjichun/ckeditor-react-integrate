@@ -26,7 +26,9 @@ import Indent from "@ckeditor/ckeditor5-indent/src/indent";
 import IndentBlock from "@ckeditor/ckeditor5-indent/src/indentblock";
 import TableProperties from "@ckeditor/ckeditor5-table/src/tableproperties";
 import TableCellProperties from "@ckeditor/ckeditor5-table/src/tablecellproperties";
-import Base64UploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/base64uploadadapter";
+import SimpleUploadAdapter from "@ckeditor/ckeditor5-upload/src/adapters/simpleuploadadapter";
+import Uploader from "./Uploader";
+import LinkTitle from "./LinkTitle";
 
 const Editor = (props) => {
   return (
@@ -63,12 +65,14 @@ const Editor = (props) => {
             ImageToolbar,
             ImageUpload,
             ImageResize,
-            Base64UploadAdapter,
             Table,
             TableToolbar,
             TableProperties,
             TableCellProperties,
-            TextTransformation
+            TextTransformation,
+            Uploader,
+            SimpleUploadAdapter,
+            LinkTitle
           ],
           toolbar: props.toolbar
             ? props.toolbar
@@ -93,7 +97,7 @@ const Editor = (props) => {
                 "|",
                 "link",
                 "insertTable",
-                "imageUpload",
+                "insertFileAndImage",
                 "|",
                 "undo",
                 "redo",
@@ -154,6 +158,14 @@ const Editor = (props) => {
                 "oneForth",
                 "threeQuarters",
               ],
+            },
+          },
+          simpleUpload: {
+            uploadUrl: "/uploadFile",
+            withCredentials: true,
+            headers: {
+              "upload-folder": props.uploadFolder ? props.uploadFolder : "root",
+              "upload-editor": props.uploader ? props.uploader : "",
             },
           },
         }}
