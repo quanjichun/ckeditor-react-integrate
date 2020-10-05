@@ -7,7 +7,10 @@
   "scripts": {
     "client": "cd client && npm start",
     "server": "cd server && npm start",
-    "start": "concurrently npm:server npm:client"
+    "client_install": "cd client && npm install",
+    "server_install": "cd server && npm install",
+    "start": "concurrently npm:server npm:client",
+    "install": "concurrently npm:server_install npm:client_install"
   },
   "devDependencies": {
     "concurrently": "^5.2.0"
